@@ -46,7 +46,7 @@ dependencies:
   audioplayers: ^6.1.0
   video_player: ^2.9.2
   chewie: ^1.8.5
-  record: ^5.1.2
+  record: ^6.0.0
 
 
 dev_dependencies:
