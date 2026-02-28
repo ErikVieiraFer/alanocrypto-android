@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:alanoapp/theme/app_theme.dart';
+import 'package:alanocrypto/theme/app_theme.dart';
 
 class AppLogo extends StatelessWidget {
   final double fontSize;

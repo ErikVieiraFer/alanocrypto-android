@@ -1,5 +1,5 @@
-name: alanoapp
-description: "App para membros do canal AlanoCryptoFX"
+name: alanocrypto
+description: "AlanoCrypto - Comunidade de Trading"
 publish_to: 'none'
 
 version: 1.0.0+1

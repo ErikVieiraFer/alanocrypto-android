@@ -1,4 +1,4 @@
-package com.example.alanoapp.test.alanoapp
+package com.alanocrypto.app
 
 import io.flutter.embedding.android.FlutterActivity
 

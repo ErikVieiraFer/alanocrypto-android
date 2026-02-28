@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:alanoapp/theme/app_theme.dart';
+import 'package:alanocrypto/theme/app_theme.dart';
 import '../features/dashboard/screen/dashboard_screen.dart';
 import '../services/payment_service.dart';
 import '../features/cupula/screens/cupula_sales_screen.dart';

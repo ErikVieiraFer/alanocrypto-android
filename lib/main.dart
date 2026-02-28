@@ -21,14 +21,9 @@ import 'services/user_service.dart';
 import 'services/fcm_service.dart';
 import 'services/notification_preferences_service.dart';
 import 'widgets/loading_screen.dart';
-import 'package:alanoapp/firebase_options.dart';
+import 'package:alanocrypto/firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-// Import condicional para Web
-// ignore: avoid_web_libraries_in_flutter, deprecated_member_use
-import 'dart:js' as js if (dart.library.io) '';
-import 'dart:html' as html if (dart.library.io) '';
-import 'dart:ui' as ui;
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -52,79 +47,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 // Chave global de navegação
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-void setupNotificationNavigation() {
-  if (kIsWeb) {
-    try {
-      html.window.addEventListener('message', (event) {
-        final data = (event as html.MessageEvent).data;
-        if (data is Map && data['type'] == 'NOTIFICATION_CLICK') {
-          debugPrint('📱 Mensagem do SW recebida: ${data['notifType']}');
-          _navigateFromNotification(data);
-        }
-      });
-      debugPrint('✅ Listener de navegação configurado');
-    } catch (e) {
-      debugPrint('❌ Erro ao configurar listener: $e');
-    }
-  }
-}
-
-void _navigateFromNotification(Map data) {
-  debugPrint('🎯 Navegando da notificação: $data');
-
-  final notifType = data['notifType']?.toString();
-
-  if (notifType == null) {
-    debugPrint('⚠️ notifType é null');
-    return;
-  }
-
-  Future.delayed(const Duration(milliseconds: 500), () {
-    final context = navigatorKey.currentContext;
-    if (context == null) {
-      debugPrint('❌ Context não disponível para navegação');
-      return;
-    }
-
-    debugPrint('✅ Navegando para tipo: $notifType');
-
-    switch (notifType) {
-      case 'alano_post':
-      case 'post':
-        debugPrint('📝 Navegando para Posts do Alano');
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const DashboardScreen(initialIndex: 2),
-          ),
-          (route) => false,
-        );
-        break;
-
-      case 'mention':
-        debugPrint('💬 Navegando para Chat');
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const DashboardScreen(initialIndex: 1),
-          ),
-          (route) => false,
-        );
-        break;
-
-      case 'signal':
-        debugPrint('📊 Navegando para Sinais');
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const DashboardScreen(initialIndex: 3),
-          ),
-          (route) => false,
-        );
-        break;
-
-      default:
-        debugPrint('⚠️ Tipo de notificação não mapeado: $notifType');
-    }
-  });
-}
 
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -188,11 +110,6 @@ void main() {
       }
 
       timeago.setLocaleMessages('pt_BR', timeago.PtBrMessages());
-
-      // Configurar navegação de notificações
-      if (kIsWeb) {
-        setupNotificationNavigation();
-      }
 
       runApp(const MyApp());
     },
