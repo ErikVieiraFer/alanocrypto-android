@@ -1,0 +1,84 @@
+import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
+
+class DefaultFirebaseOptions {
+  static FirebaseOptions get currentPlatform {
+    if (kIsWeb) {
+      return web;
+    }
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.android:
+        return android;
+      case TargetPlatform.iOS:
+        return ios;
+      case TargetPlatform.macOS:
+        return macos;
+      case TargetPlatform.windows:
+        return windows;
+      case TargetPlatform.linux:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for linux - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
+      default:
+        throw UnsupportedError(
+          'DefaultFirebaseOptions are not supported for this platform.',
+        );
+    }
+  }
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyD25JZdaoYY2TUIKr3Ey3ylS9r-xrQ0d8U',
+    appId: '1:508290889017:web:4e7b52875cfee66008e4e8',
+    messagingSenderId: '508290889017',
+    projectId: 'alanocryptofx-v2',
+    authDomain: 'alanocryptofx-v2.firebaseapp.com',
+    storageBucket: 'alanocryptofx-v2.firebasestorage.app',
+    measurementId: 'G-V1F7QG4K4C',
+  );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyADUwgaqCqZfwT80gyU2PSWHkxLFRmNrUk',
+    appId: '1:508290889017:android:b88b93b1c5ff331908e4e8',
+    messagingSenderId: '508290889017',
+    projectId: 'alanocryptofx-v2',
+    storageBucket: 'alanocryptofx-v2.firebasestorage.app',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyB77ViHGuoWqVSsxkoyZcQVYUzPVPJqM4M',
+    appId: '1:508290889017:ios:574367f80ecf650b08e4e8',
+    messagingSenderId: '508290889017',
+    projectId: 'alanocryptofx-v2',
+    storageBucket: 'alanocryptofx-v2.firebasestorage.app',
+    androidClientId:
+        '508290889017-vut39rglmo28a8e6p3jg550srr8206i1.apps.googleusercontent.com',
+    iosClientId:
+        '508290889017-p224pp9boj1t35ril17kv3oh71nof0di.apps.googleusercontent.com',
+    iosBundleId: 'com.example.alanoapp.test',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyB77ViHGuoWqVSsxkoyZcQVYUzPVPJqM4M',
+    appId: '1:508290889017:ios:bc0e63ab76f2a8a808e4e8',
+    messagingSenderId: '508290889017',
+    projectId: 'alanocryptofx-v2',
+    storageBucket: 'alanocryptofx-v2.firebasestorage.app',
+    androidClientId:
+        '508290889017-vut39rglmo28a8e6p3jg550srr8206i1.apps.googleusercontent.com',
+    iosClientId:
+        '508290889017-fpon32gltjocen19s22s5ko9d2cuidvs.apps.googleusercontent.com',
+    iosBundleId: 'com.example.alanoapp',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyD25JZdaoYY2TUIKr3Ey3ylS9r-xrQ0d8U',
+    appId: '1:508290889017:web:96549fafe329238408e4e8',
+    messagingSenderId: '508290889017',
+    projectId: 'alanocryptofx-v2',
+    authDomain: 'alanocryptofx-v2.firebaseapp.com',
+    storageBucket: 'alanocryptofx-v2.firebasestorage.app',
+    measurementId: 'G-KXSTC0ZJ0D',
+  );
+}

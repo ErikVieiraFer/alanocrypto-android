@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="AlanoCryptoFX - Plataforma de Trading e Sinais de Criptomoedas">
+  <meta name="keywords" content="trading, crypto, sinais, criptomoedas, bitcoin, ethereum, análise técnica">
+  <meta name="author" content="Alano Costa">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="AlanoCryptoFX">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/Icon-512.png">
+
+  <title>AlanoCryptoFX</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="google-signin-client_id" content="508290889017-kcm5f3mmnnj8iejn2ro12agrjdjju9hj.apps.googleusercontent.com">
+</head>
+<body>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', async () => {
+        try {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+
+          for (let registration of registrations) {
+            const sw = registration.active || registration.installing || registration.waiting;
+            if (sw) {
+              await registration.unregister();
+            }
+          }
+
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          const registration = await navigator.serviceWorker.register(
+            '/firebase-messaging-sw.js',
+            {
+              scope: '/',
+              updateViaCache: 'none'
+            }
+          );
+
+          await navigator.serviceWorker.ready;
+        } catch (error) {
+          console.error('Erro Service Worker:', error);
+        }
+      });
+    }
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0E1116;
+      overflow: hidden;
+    }
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0E1116;
+      z-index: 9999;
+    }
+    .loader {
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-top: 3px solid #00d4aa;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  <div id="loading">
+    <div class="loader"></div>
+  </div>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function() {
+      const loading = document.getElementById('loading');
+      if (loading) {
+        loading.style.display = 'none';
+      }
+    });
+  </script>
+
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

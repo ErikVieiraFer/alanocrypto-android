@@ -1,0 +1,9 @@
+[
+  {
+    "origin": ["*", "http://localhost:5000",
+      "http://localhost",
+      "https://alanocryptofx-v2.firebaseapp.com"],
+    "method": ["GET", "HEAD"],
+    "maxAgeSeconds": 3600
+  }
+]
